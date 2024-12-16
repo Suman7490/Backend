@@ -15,9 +15,8 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
-// app.use(cors({ origin: 'https://quotation.kalpresearchwork.com' }));
 app.use(cors({
-    origin: 'https://quotation.kalpresearchwork.com', // Allow this specific origin
+    origin: 'https://quotation.kalpresearchwork.com',
     credentials: true
 }));
 app.use(express.json());
@@ -26,22 +25,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  connectionLimit: 10,
-  connectTimeout: 10000,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    connectionLimit: 10,
+    connectTimeout: 10000,
 })
 
-// const db = mysql.createPool({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "KRW",
-//     connectionLimit: 10,
-//     connectTimeout: 10000,
-// })
 db.getConnection(err => {
     if (err) {
         console.error('Error connecting to MySQL: ', err);
@@ -93,9 +84,6 @@ app.post('/logout', (req, res) => {
 
 
 // ************* Get Data *************
-// app.get('/', (req, res) => {
-//     res.send("Hello Wordls")
-// })
 app.get('/', (req, res) => {
     const sql = `
       SELECT q.quotation_id, q.name, q.email, q.gender, q.domain, q.date,  q.total, q.totalDiscount, q.finalAmount, q.totalService, q.inputCount,
