@@ -17,7 +17,7 @@ dotenv.config();
 const app = express();
 // app.use(cors({ origin: 'https://quotation.kalpresearchwork.com' }));
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow this specific origin
+    origin: 'https://quotation.kalpresearchwork.com', // Allow this specific origin
     credentials: true
 }));
 app.use(express.json());
@@ -484,9 +484,10 @@ app.get('/pdf/:id', (req, res) => {
 
 
 // Catch-all handler for other requests
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public_html', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public_html', 'index.html'));
+});
+
 
 // *********************************************************************
 const PORT = process.env.PORT || 5000;
