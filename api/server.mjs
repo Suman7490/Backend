@@ -1,4 +1,3 @@
-
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv'
@@ -75,11 +74,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Logout endpoint
-app.post('/logout', (req, res) => {
-    res.clearCookie('auth');
-    res.send('Logout successful.');
-});
 
 
 
