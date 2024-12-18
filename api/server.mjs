@@ -15,7 +15,8 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 app.use(cors({
-    origin: 'https://quotation.kalpresearchwork.com',
+    // origin: 'https://quotation.kalpresearchwork.com',
+    origin: ['http://localhost:3000', 'https://quotation.kalpresearchwork.com'],
     credentials: true
 }));
 app.use(express.json());
@@ -40,13 +41,13 @@ db.getConnection(err => {
     console.log('Connected to MySQL Database');
 });
 // *****************************************************************
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://quotation.kalpresearchwork.com');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', 'https://quotation.kalpresearchwork.com');
+//     res.header('Access-Control-Allow-Credentials', 'true');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     next();
+// });
 
 // ************** For getting all the routes ***********************
 app.use(express.static(path.join(__dirname, 'public_html')));
